@@ -18,6 +18,7 @@ public class playermovement : MonoBehaviour
     public Vector3 jump;
     public float jumpForce = 2.0f;
     public bool isGrounded;
+    public Camera playercam;
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +38,17 @@ public class playermovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        rb.AddForce(movement*speed);
+        
+        Vector3 forward = playercam.transform.forward;
+        Vector3 right = playercam.transform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+Vector3 movement = (right * movementX + forward * movementY).normalized;
+        rb.AddForce(movement * speed);  
     }
+
 
     void OnTriggerEnter(Collider other)
     {
