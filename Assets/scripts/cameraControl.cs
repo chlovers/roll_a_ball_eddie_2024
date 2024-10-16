@@ -4,34 +4,23 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
+    // Reference to the player GameObject.
     public GameObject player;
+
+    // The distance between the camera and the player.
     private Vector3 offset;
-    public float sensitivity = 2.0f; // Mouse sensitivity
 
-    private float xRotation = 0f;
-
+    // Start is called before the first frame update.
     void Start()
     {
+        // Calculate the initial offset between the camera's position and the player's position.
         offset = transform.position - player.transform.position;
-        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
     }
 
+    // LateUpdate is called once per frame after all Update functions have been completed.
     void LateUpdate()
     {
-        // Update camera position based on player position
+        // Maintain the same offset between the camera and player throughout the game.
         transform.position = player.transform.position + offset;
-
-        // Get mouse input
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
-
-        // Calculate rotation
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f); // Limit the up/down rotation
-
-        // Rotate the camera
-        transform.localRotation = Quaternion.Euler(xRotation, transform.localEulerAngles.y, 0f);
-        // Rotate the player body
-        player.transform.Rotate(Vector3.up * mouseX);
     }
 }
