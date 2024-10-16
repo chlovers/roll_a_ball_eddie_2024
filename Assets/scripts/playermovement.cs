@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 2.0f;
     public bool isGrounded;
     public float speed = 0;
-
+    
 
     void Start()
     {
