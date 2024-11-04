@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 2.0f;
     public bool isGrounded;
     public float speed = 0;
-    public float climbSpeed = 3.0f; // Speed for climbing
-    private bool isClimbing = false; // Flag for climbing
+    public float climbSpeed = 3.0f;
+    private bool isClimbing = false; 
 
     void Start()
     {
@@ -38,13 +38,13 @@ public class PlayerController : MonoBehaviour
     {
         if (isClimbing)
         {
-            // Climbing movement
-            Vector3 climbMovement = new Vector3(0.0f, movementY, 0.0f); // Only vertical movement for climbing
+            
+            Vector3 climbMovement = new Vector3(0.0f, movementY, 0.0f); 
             rb.velocity = new Vector3(rb.velocity.x, climbMovement.y * climbSpeed, rb.velocity.z);
         }
         else
         {
-            // Regular movement
+            
             Vector3 movement = new Vector3(movementX, 0.0f, movementY);
             rb.AddForce(movement * speed);
         }
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Handle jumping
+        
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isClimbing)
         {
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
@@ -62,10 +62,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Climbable")) // Ensure your ladder has the "Ladder" tag
+        if (other.CompareTag("Climbable")) 
         {
             isClimbing = true;
-            rb.useGravity = false; // Disable gravity while climbing
+            rb.useGravity = false; 
         }
     }
 
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Climbable"))
         {
             isClimbing = false;
-            rb.useGravity = true; // Enable gravity again when exiting the ladder
+            rb.useGravity = true; 
         }
     }
 }
