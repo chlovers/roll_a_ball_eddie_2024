@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public float speed = 0;
     public float climbSpeed = 3.0f;
-    private bool isClimbing = false; 
+    private bool isClimbing = false;
+    public float maxspeed = 10f;
 
     void Start()
     {
@@ -48,6 +49,13 @@ public class PlayerController : MonoBehaviour
             Vector3 movement = new Vector3(movementX, 0.0f, movementY);
             rb.AddForce(movement * speed);
         }
+
+        if (rb.velocity.magnitude > maxspeed)
+        {
+
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxspeed);
+        }
+
     }
 
     void Update()
