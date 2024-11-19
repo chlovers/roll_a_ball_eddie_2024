@@ -18,6 +18,7 @@ public class Endpoint : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Button.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 

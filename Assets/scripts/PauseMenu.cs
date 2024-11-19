@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
         ispaused = false;
         Time.timeScale = 1;
         pausescreen.SetActive(false);
+        Cursor.visible = false;
     }
 
     void Update()
