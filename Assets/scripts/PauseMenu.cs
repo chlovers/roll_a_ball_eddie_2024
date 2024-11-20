@@ -7,10 +7,11 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pausescreen;
     private bool ispaused;
+    
 
 
 
-     void Start()
+    void Start()
     {
         ispaused = false;
         Time.timeScale = 1;
@@ -58,7 +59,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("Level 1");
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
     }
 
     public void Back()

@@ -19,6 +19,7 @@ public class Endpoint : MonoBehaviour
         {
             Button.SetActive(true);
             Time.timeScale = 0;
+            Cursor.visible = true;
         }
     }
 
